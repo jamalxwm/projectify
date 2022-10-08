@@ -8,6 +8,20 @@ body {
   background-color: black;
 }
 
+@font-face {
+  font-family: "GilroyBold";
+  src: local("GilroyBold"),
+    url('./assets/fonts/Gilroy-Bold.otf') format('opentype');
+    font-weight: bold;
+}
+
+@font-face {
+  font-family: "GilroyMedium";
+  src: local("GilroyMedium"),
+    url('./assets/fonts/Gilroy-Medium.otf') format('opentype');
+    font-weight: medium;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/projectifylogo.svg';
+import logo from '../assets/media/projectifylogo.svg';
 import styles from '../styles/NavBar.module.css';
 
 function NavBar() {

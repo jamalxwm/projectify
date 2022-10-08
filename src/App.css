@@ -29,11 +29,20 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+h1 {
+  font-family: 'GilroyBold', sans-serif;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p {
+  font-family: 'Gilroy-Medium', sans-serif;
+  color: white;
+}
+
+@media screen and (max-width: 479px) {
+  h1 {
+    font-size: 2.5em;
   }
 }

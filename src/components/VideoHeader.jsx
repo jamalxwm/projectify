@@ -1,6 +1,6 @@
 import React from 'react';
-import video_mobile from '../assets/WEBLOOP_mobile.mp4';
-import video_desktop from '../assets/WEBLOOP_desktop.mp4';
+import video_mobile from '../assets/media/WEBLOOP_mobile.mp4';
+import video_desktop from '../assets/media/WEBLOOP_desktop.mp4';
 import Media from 'react-media';
 
 export default function VideoHeader() {

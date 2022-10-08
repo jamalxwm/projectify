@@ -1,0 +1,20 @@
+.absolute {
+    position: absolute;
+    top: 50%;
+    background: linear-gradient(0deg, #000000 52.95%, rgba(0, 0, 0, 0) 102.95%);
+}
+
+.innerPadding {
+    padding-top: 4.5em;
+    z-index: 100;
+}
+
+.container {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.buttonWrapper {
+    margin: 3em 0;
+    padding: 1em 0
+}
