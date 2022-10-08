@@ -1,12 +1,15 @@
-import React from 'react'
-import logo from '../assets/projectifylogo.svg'
+import React from 'react';
+import logo from '../assets/projectifylogo.svg';
+import styles from '../styles/NavBar.module.css';
 
 function NavBar() {
   return (
     <div>
-        <img src={logo} alt="projectify logo"></img>
+      <div className={styles.container}>
+        <img src={logo} className={styles.logo} alt="projectify logo" />
+      </div>
     </div>
-  )
+  );
 }
 
-export default NavBar
+export default NavBar;
