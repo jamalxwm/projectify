@@ -2,17 +2,22 @@ import React from 'react';
 import styles from '../styles/Main.module.css';
 import { Button } from '@mui/material';
 import spotify from '../assets/media/spotify-32.png';
+import Media from 'react-media';
+
 
 function Main() {
   return (
     <div className={styles.absolute}>
       <div className={styles.innerPadding}>
         <div className={styles.container}>
-          <h1>The easiest ticket in town</h1>
+          <Media query={{minWidth: 992}}>
+            {matches => 
+            matches ? (<h1>The easiest ticket in town</h1>) : (<h1>The easiest <br/>ticket in town</h1>)}
+          </Media>
           <p>
             <strong>Projectify</strong> reveals the top Warehouse Projects
             for you based on your music taste, so you can spend less time
-            deciding more time dancing
+            deciding and more time dancing
           </p>
           <div className={styles.buttonWrapper}>
             <Button

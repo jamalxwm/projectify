@@ -1,12 +1,13 @@
 .absolute {
     position: absolute;
-    top: 50%;
+    top: 45%;
+    width: 100%;
     background: linear-gradient(0deg, #000000 52.95%, rgba(0, 0, 0, 0) 102.95%);
 }
 
 .innerPadding {
     padding-top: 4.5em;
-    z-index: 100;
+    
 }
 
 .container {
@@ -17,4 +18,52 @@
 .buttonWrapper {
     margin: 3em 0;
     padding: 1em 0
+}
+
+@media screen and (min-width: 992px) {
+    p {
+        margin: 2.5em 5em;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .absolute {
+        top: 35%;  
+    }
+    .innerPadding {
+        padding-top: 5em;  
+    }
+    .container {
+        padding-left: 5em;
+        padding-right: 5em;
+    }
+    .buttonWrapper {
+        margin: 5em 0; 
+    }
+}
+
+@media screen and (max-width: 769px) {
+    .innerPadding {
+        padding-top: 4em;  
+    }
+    .container {
+        padding-left: 4em;
+        padding-right: 4em;
+    }
+    .buttonWrapper {
+        margin: 4em 0; 
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .absolute {
+        top: 45%;
+    }
+    .innerPadding {
+        padding-top: 4.5em;
+    }
+    .container {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
 }
