@@ -4,6 +4,8 @@ import { Button } from '@mui/material';
 import spotify from '../assets/media/spotify-32.png';
 import Media from 'react-media';
 import SignUpDialog from './SignUpDiaglog';
+import Footer from './Footer';
+
 
 function Main() {
   const [open, setOpen] = useState(false);
@@ -33,8 +35,7 @@ function Main() {
             }
           </Media>
           <p>
-            <strong>Projectify</strong> reveals the top Warehouse Projects for
-            you based on your music taste, so you can spend less time deciding
+            <strong>Projectify</strong> reveals your top Warehouse Project matches based on your music taste,<br/> so you can spend less time deciding
             and more time dancing
           </p>
           <div className={styles.buttonWrapper}>
@@ -55,9 +56,12 @@ function Main() {
               Connect with Spotify
             </Button>
             <SignUpDialog open={open} handleClickOpen={handleClickOpen} setOpen={setOpen} handleClose={handleClose}/>
+            
           </div>
         </div>
+        <Footer/>
       </div>
+      
     </div>
   );
 }

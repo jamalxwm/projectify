@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -18,7 +18,7 @@ export default function SignUpDialog({open, setOpen, handleClickOpen, handleClos
         </DialogTitle>
         <DialogContent>
           <DialogContentText style={{ fontFamily: 'GilroyMedium' }}>
-            Enter your email address below to be add to our launch list
+            Enter your email address below to get notified when we launch
           </DialogContentText>
           <TextField
             autoFocus
