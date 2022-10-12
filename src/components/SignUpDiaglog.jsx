@@ -10,6 +10,8 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import emailjs from '@emailjs/browser';
 import { Collapse } from '@mui/material';
+import env from 'react-dotenv'
+
 
 export default function SignUpDialog({ open, setOpen, handleClose }) {
   const [email, setEmail] = useState('');
@@ -28,10 +30,10 @@ export default function SignUpDialog({ open, setOpen, handleClose }) {
 
     emailjs
       .send(
-        process.env.REACT_APP_SERVICE_ID,
-        process.env.REACT_APP_TEMPLATE_ID,
+        env.REACT_APP_SERVICE_ID,
+        env.REACT_APP_TEMPLATE_ID,
         templateParams,
-        process.env.REACT_APP_PUBLIC_KEY
+        env.REACT_APP_PUBLIC_KEY
       )
       .then(() => {
         setOpen(false);
