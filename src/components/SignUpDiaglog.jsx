@@ -10,8 +10,7 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import emailjs from '@emailjs/browser';
 import { Collapse } from '@mui/material';
-import env from 'react-dotenv'
-
+import env from 'react-dotenv';
 
 export default function SignUpDialog({ open, setOpen, handleClose }) {
   const [email, setEmail] = useState('');
@@ -40,7 +39,9 @@ export default function SignUpDialog({ open, setOpen, handleClose }) {
         setEmail('');
         setSuccessAlertOpen(true);
       })
-      .catch(alert('Something went wrong. Try again.'));
+      .catch((error) => {
+        if (error) alert('Something went wrong. Try again.');
+      });
   };
 
   return (
