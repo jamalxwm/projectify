@@ -50,7 +50,7 @@ function Main() {
               size="large"
               onClick={() => setOpen(true)}
               startIcon={
-                <img src={spotify} style={{ width: '24px', height: '24px' }} />
+                <img src={spotify} style={{ width: '24px', height: '24px' }} alt="spotify logo" />
               }
             >
               Connect with Spotify

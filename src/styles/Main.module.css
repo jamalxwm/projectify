@@ -22,6 +22,10 @@
     padding: 1em 0
 }
 
+p {
+    font-family: 'GilroyMedium';
+}
+
 @media screen and (min-width: 992px) {
     p {
         margin: 2.5em 5em;
