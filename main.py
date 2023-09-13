@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
 import base64
-from requests import post
+from requests import post, get
 import json
 
 load_dotenv()
@@ -26,6 +26,54 @@ def get_token():
     return token
 
 def get_auth_header(token):
-    return {"Authorization": "Bearer {}".format(token)}
+    return {"Authorization": "Bearer " + token}
+
+def search_for_artist(token, artists):
+    url = 'https://api.spotify.com/v1/search'
+    headers = get_auth_header(token)
+
+    for artist in artists:
+        query = f"?q={artist}&type=artist&limit=50"
+        query_url = url + query
+        result = get(query_url, headers=headers)
+        data = json.loads(result.content)
+
+        if 'artists' in data:
+            json_results = data['artists']['items']
+
+            exact_match = False
+
+            for result_item in json_results:
+                if result_item['name'].lower() == artist.lower():
+                    exact_match = True
+                    found_artist = result_item['name']
+                    print(f'Exact match found for: {found_artist}', result_item)
+                    break
+
+        if not exact_match:
+            parts = artist.split(' & ')
+            exact_match_part = False
+
+            for part in parts:
+                query_part = f"?q={part}&type=artist&limit=50"
+                query_url = url + query_part
+                result = get(query_url, headers=headers)
+                json_results = json.loads(result.content)['artists']['items']
+
+                for result_item in json_results:
+                    if result_item['name'].lower() == part.lower():
+                        print(f'Exact match found for: {part}', result_item)
+                        exact_match_part = True
+                        
+
+                if exact_match_part:
+                    continue
+
+
 
 token = get_token()
+test_list = ['Polo & Pan', 'Dan Shake & Sally C']
+result = search_for_artist(token, test_list)
+# artist_id = result['name']
+# print(artist_id)
+
