@@ -1,6 +1,9 @@
 import unicodedata
 import regex
 import re
+from spotify_search import search_for_artists, get_token
+
+token = get_token()
 
 def clean_artists(artists_div):
    # Find all <em> tags in the HTML and remove them along with their contents
@@ -21,13 +24,16 @@ def clean_artists(artists_div):
    
    removed_substrings = remove_substrings(artists_parts)
    replaced_strings = replace_strings(removed_substrings)
-   print(replaced_strings)
+   removed_empty_strings = list(filter(remove_empty_strings, replaced_strings))                            
+   split_and_extracted_strings = split_and_extract_artists(removed_empty_strings)
+   matched_artists, unmatched_artists = search_for_artists(token, split_and_extracted_strings)
+   print(matched_artists, unmatched_artists)
 
    return artists_parts
 
 def remove_substrings(parts_list):
     
-    pattern = r'(- Live|Dance Regular: |Born On Road: | In:session|\+ Many More|\[live\]|Presents Evolve|Special Guest:|a-z|Day & Night across five stages in|around Depot Mayfield|All Tickets £25|Register for instant access to the pre-sale via the link below|Pre-sale - 10am Wednesday 13th September|General sale - 10am Thursday 14th September|\(Reel-to- Reel Live\)|\(Daytimers\)|30 Years Of V Recordings - |- Recording Live From The Depot|- DJ Set)'
+    pattern = r'( - Live|Dance Regular: |Born On Road: | In:session|\+ Many More| \[live\]| Presents Evolve|Special Guest: |a-z|Day & Night across five stages in|around Depot Mayfield|All Tickets £25|Register for instant access to the pre-sale via the link below|Pre-sale - 10am Wednesday 13th September|General sale - 10am Thursday 14th September| \(Reel-to- Reel Live\)| \(Daytimers\)|30 Years Of V Recordings - | - Recording Live From The Depot| - DJ Set)'
     removed_substrings = []
     # Remove unecessary substring from artist names and append to the removed substrings list
     for part in parts_list:
@@ -56,7 +62,7 @@ def replace_strings(artist_list):
         elif artist_list[i] == 'Egg (Porij)':
             replaced_strings.append('Porij')
             i += 1
-        elif artist_list[i] == ('+ Special Guests TBA' or '+ special guests TBA'):
+        elif re.match(r'.*TBA.*', artist_list[i]):
             replaced_strings.append('TBA')
             i += 1
         elif artist_list[i].startswith('ANOTR'):
@@ -69,3 +75,27 @@ def replace_strings(artist_list):
             replaced_strings.append(artist_list[i])
             i += 1
     return replaced_strings
+
+def split_and_extract_artists(input_list):
+    result_list = []
+
+    for item in input_list:
+        # Split the item at '(' and ')'
+        parts = item.split('(')
+        
+        # The first part is the main name
+        main_name = parts[0].strip()
+        result_list.append(main_name)
+        
+        # Extract elements inside parentheses and split them by comma and space
+        if len(parts) > 1:
+            elements = parts[1].replace(')', '').split(', ')
+            result_list.extend(elements)
+    
+    return result_list
+
+def remove_empty_strings(string):
+    if len(string) <= 1:
+        return None
+    else:
+        return string.strip()
